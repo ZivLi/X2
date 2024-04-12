@@ -38,18 +38,18 @@ for u in [
         "avatarUrl": "https://gravatar.com/avatar/e352769376aed6577e8142f7cbd518db?s=400&d=robohash&r=x",
         "nickName": "tom",
     },
-    {
-        "avatarUrl": "https://gravatar.com/avatar/5ead1bfde756bd693435fde2e39631e3?s=400&d=robohash&r=x",
-        "nickName": "pop",
-    },
-    {
-        "avatarUrl": "https://robohash.org/8b5e38be4eb8e5204686a9ff10b91acb?set=set4&bgset=&size=400x400",
-        "nickName": "ax",
-    },
-    {
-        "avatarUrl": "https://robohash.org/f02d530fa285506c2ea14919882914f4?set=set4&bgset=&size=400x400",
-        "nickName": "cat",
-    },
+    # {
+    #     "avatarUrl": "https://gravatar.com/avatar/5ead1bfde756bd693435fde2e39631e3?s=400&d=robohash&r=x",
+    #     "nickName": "pop",
+    # },
+    # {
+    #     "avatarUrl": "https://robohash.org/8b5e38be4eb8e5204686a9ff10b91acb?set=set4&bgset=&size=400x400",
+    #     "nickName": "ax",
+    # },
+    # {
+    #     "avatarUrl": "https://robohash.org/f02d530fa285506c2ea14919882914f4?set=set4&bgset=&size=400x400",
+    #     "nickName": "cat",
+    # },
 ]:
     shop_users["s1"].append(u)
 

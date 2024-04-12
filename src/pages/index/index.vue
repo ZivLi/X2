@@ -97,13 +97,7 @@ export default {
 					},
 					header: {
 						'Content-Type': 'application/json'
-					},
-					success: (res) => {
-						// 超过3人即组队成功
-						if (res.data.length >= 3) {
-							this.showGroupSuccessModal()
-						}
-					},
+					}
 				});
 			}).catch((err) => { console.log(err) })
 		},
@@ -116,9 +110,7 @@ export default {
 				confirmText: '收到',
 				success: (res) => {
 					// 弹窗关闭时触发的回调函数
-					if (res.confirm) {
-
-					}
+					if (res.confirm) { }
 				}
 			})
 		},
@@ -164,6 +156,11 @@ export default {
 
 				socket.on('s1', (message) => {
 					this.users = message
+
+					// 超过3人即组队成功
+					if (this.users.length >= 3) {
+						this.showGroupSuccessModal()
+					}
 				})
 			})
 		},
