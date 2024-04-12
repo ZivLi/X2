@@ -40,8 +40,6 @@ export default {
 		return {
 			serverUrl: 'http://localhost:8086',
 			wsServerUrl: 'ws://localhost:8086',
-			socket: null,
-			rowCount: 3,
 			users: [],
 			userInfo: null,
 			searchKeyword: '',
@@ -101,16 +99,13 @@ export default {
 						'Content-Type': 'application/json'
 					},
 					success: (res) => {
+						// 超过3人即组队成功
 						if (res.data.length >= 3) {
 							this.showGroupSuccessModal()
 						}
-						console.log('join success')
 					},
 				});
 			}).catch((err) => { console.log(err) })
-		},
-		addUser(index) {
-			console.log(index)
 		},
 
 		showGroupSuccessModal() {
@@ -118,11 +113,11 @@ export default {
 				title: '组团成功',
 				content: '快去收银台集结吧！',
 				showCancel: false,
-				confirmText: '知道了',
+				confirmText: '收到',
 				success: (res) => {
 					// 弹窗关闭时触发的回调函数
 					if (res.confirm) {
-						console.log('用户点击了知道了');
+
 					}
 				}
 			})
@@ -165,10 +160,10 @@ export default {
 				transports: ['websocket', 'polling'],
 			});
 			socket.on('connect', () => {
-				console.log('connected')
+				console.log('websocket connected.')
 
 				socket.on('s1', (message) => {
-					this.userInfo = message
+					this.users = message
 				})
 			})
 		},

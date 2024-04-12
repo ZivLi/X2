@@ -54,9 +54,9 @@ for u in [
     shop_users["s1"].append(u)
 
 
-@socketio.on("connect")
-def handle_connect():
-    print("----connect websocket")
+# @socketio.on("connect")
+# def handle_connect():
+#     print("----connect websocket")
 
 
 @app.route("/shop_users")
