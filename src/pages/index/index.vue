@@ -165,50 +165,55 @@ export default {
 						this.showGroupSuccessModal()
 					}
 				})
+
+				// socket.on('disconnect', () => {
+				// 	console.log('websocket disconnected.')
+				// 	socket.close();
 			})
-		},
-		// 根据用户输入的关键词搜索附近的店铺
-		searchNearbyShops() {
-			if (!this.userLocation) {
-				console.error("请先获取用户地理位置");
-				return;
-			}
-
-			wx.request({
-				url: 'https://apis.map.qq.com/ws/place/v1/search',
-				data: {
-					keyword: this.searchKeyword,
-					boundary: `nearby(${this.userLocation.latitude},${this.userLocation.longitude},5000)`,
-					key: 'YOUR_TENCENT_MAP_API_KEY',
-					output: 'json'
-				},
-				success: (res) => {
-					if (res.data.status === 0) {
-						this.shops = res.data.data;
-					} else {
-						console.error('搜索附近店铺失败：', res.data.message);
-					}
-				},
-				fail: (error) => {
-					console.error('搜索附近店铺失败：', error);
-				}
-			})
-
-			// 使用地图API根据关键词搜索附近的店铺，并更新this.shops
-			// 比如：调用腾讯地图API
-		},
-		// 选中店铺
-		selectShop(shop) {
-
-			// 用户选中店铺后的操作，比如跳转到店铺详情页等
+		})
+	},
+	// 根据用户输入的关键词搜索附近的店铺
+	searchNearbyShops() {
+		if (!this.userLocation) {
+			console.error("请先获取用户地理位置");
+			return;
 		}
+
+		wx.request({
+			url: 'https://apis.map.qq.com/ws/place/v1/search',
+			data: {
+				keyword: this.searchKeyword,
+				boundary: `nearby(${this.userLocation.latitude},${this.userLocation.longitude},5000)`,
+				key: 'YOUR_TENCENT_MAP_API_KEY',
+				output: 'json'
+			},
+			success: (res) => {
+				if (res.data.status === 0) {
+					this.shops = res.data.data;
+				} else {
+					console.error('搜索附近店铺失败：', res.data.message);
+				}
+			},
+			fail: (error) => {
+				console.error('搜索附近店铺失败：', error);
+			}
+		})
+
+		// 使用地图API根据关键词搜索附近的店铺，并更新this.shops
+		// 比如：调用腾讯地图API
 	},
-	mounted() {
-		this.connectWebsocket();
-		//   this.getUserLocation(); // 组件加载时获取用户地理位置
-	},
-	onLoad() {
-		this.getUsers()
+	// 选中店铺
+	selectShop(shop) {
+
+		// 用户选中店铺后的操作，比如跳转到店铺详情页等
 	}
+},
+mounted() {
+	this.connectWebsocket();
+	//   this.getUserLocation(); // 组件加载时获取用户地理位置
+},
+onLoad() {
+	this.getUsers()
+}
 };
 </script>
