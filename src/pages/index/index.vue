@@ -1,5 +1,8 @@
 <template>
 	<view class="container">
+		<view class="bg-container">
+			<image src="../../static/background.png" />
+		</view>
 		<input v-model="searchKeyword" type="text" placeholder="输入店铺名进行筛选" />
 		<button type="primary" @tap="searchNearbyShops">搜索</button>
 		<view v-if="shops.length > 0">
