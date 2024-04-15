@@ -74,6 +74,15 @@ def post_join_shop_users():
     return list(shop_users[shop_id])
 
 
+@app.route("/exit_shop", methods=["POST"])
+def post_exit_shop_users():
+    shop_id = request.args.get("shop")
+    shop_users.get(shop_id, TimerList()).remove(request.json)
+
+    socketio.emit(shop_id, list(shop_users[shop_id]))
+    return list(shop_users[shop_id])
+
+
 @app.route("/test")
 def test_ws():
     socketio.emit("e1", json.dumps({"a": "1", "b": 23}))

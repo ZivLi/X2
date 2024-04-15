@@ -29,7 +29,7 @@
 
 		<view class="button-container">
 			<button class="btn" type="primary" @tap="joinGroup">加入组团</button>
-			<button class="btn" type="primary" @tap="joinGroup">退出组团</button>
+			<button class="btn" type="primary" @tap="exitGroup">退出组团</button>
 		</view>
 	</view>
 </template>
@@ -104,7 +104,19 @@ export default {
 				});
 			}).catch((err) => { console.log(err) })
 		},
-
+		exitGroup() {
+			uni.request({
+				url: this.serverUrl + '/exit_shop?shop=' + 's1',
+				method: 'POST',
+				data: {
+					avatarUrl: this.userInfo.avatarUrl,
+					nickName: this.userInfo.nickName
+				},
+				header: {
+					'Content-Type': 'application/json'
+				}
+			});
+		},
 		showGroupSuccessModal() {
 			uni.showModal({
 				title: '组团成功',
@@ -166,10 +178,10 @@ export default {
 					}
 				})
 
-				// socket.on('disconnect', () => {
-				// 	console.log('websocket disconnected.')
-				// 	socket.close();
-				// })
+				socket.on('disconnect', () => {
+					console.log('websocket disconnected.')
+					socket.close();
+				})
 			})
 		},
 		// 根据用户输入的关键词搜索附近的店铺
